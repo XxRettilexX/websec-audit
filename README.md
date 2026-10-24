@@ -50,6 +50,41 @@ pip install -r requirements.txt
 
 ## Uso
 
+### Modalità interattiva (consigliata per uso da terminale)
+
+Lanciando il programma **senza argomenti** parte una procedura guidata che chiede dominio,
+tipo di test, conferma di autorizzazione (se scegli il test attivo) e dove salvare il report:
+
+```bash
+python -m websec_audit
+```
+
+```
+======================================================================
+ websec-audit — audit di sicurezza interattivo
+======================================================================
+Usa questo strumento solo su siti che possiedi o per cui hai
+autorizzazione scritta esplicita a eseguire test di sicurezza.
+
+Dominio o URL da testare (es. tuosito.it o https://tuosito.it/pagina?id=1): tuosito.it
+
+Tipi di test disponibili:
+  1) Passivo  — sempre sicuro: header, cookie, TLS, CORS, DNS/SPF/DMARC, file esposti
+  2) Attivo   — in più: detection XSS/SQLi, open redirect, ricerca path sensibili
+                (genera traffico reale di test verso il sito, non distruttivo)
+
+Scegli 1 o 2 [1]: 2
+
+Hai scelto il test ATTIVO. [...]
+Confermi di possedere questo sito o di avere autorizzazione scritta a testarlo
+in modalità attiva? (s/N): s
+Richieste al secondo massime verso il target [3]:
+Vuoi salvare il report su file invece di vederlo solo a schermo? (s/N): s
+Percorso del file di output [report.md]: report.md
+```
+
+### Modalità a flag (per script/automazione)
+
 Audit passivo su un singolo sito (sempre permesso, nessuna conferma richiesta):
 
 ```bash

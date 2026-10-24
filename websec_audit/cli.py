@@ -42,7 +42,8 @@ def build_parser() -> argparse.ArgumentParser:
         prog="websec-audit",
         description=(
             "Audit di sicurezza per siti web di tua proprietà. Modalità 'passive' (default) è "
-            "sempre sicura; la modalità 'active' richiede --active E --i-own-this-target."
+            "sempre sicura; la modalità 'active' richiede --active E --i-own-this-target. "
+            "Lanciato senza argomenti, parte una procedura guidata interattiva da terminale."
         ),
     )
     src = p.add_mutually_exclusive_group(required=True)
@@ -64,6 +65,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: List[str] | None = None) -> int:
+    effective_argv = sys.argv[1:] if argv is None else argv
+    if not effective_argv:
+        from websec_audit.interactive import run_interactive
+        return run_interactive()
+
     parser = build_parser()
     args = parser.parse_args(argv)
 
