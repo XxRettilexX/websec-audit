@@ -1,0 +1,10 @@
+# Copia questo file in targets.yaml e adattalo. targets.yaml è in .gitignore
+# per evitare di committare per errore i tuoi domini/parametri interni.
+targets:
+  - url: https://tuosito.it
+    authorized: true
+    mode: passive
+
+  - url: "https://tuosito.it/ricerca?q=test"
+    authorized: true
+    mode: active
